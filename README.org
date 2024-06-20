@@ -1,0 +1,26 @@
+
+
+* A RDF/Turtle Pull parser on C
+
+this parser as intented to be a header only parser on C only
+
+**
+
+* References
+
+** RDF Refence file
+
+- An ontology from [[https://obofoundry.org][OBO Foundury]]
+
+** Pull Parsers
+
+https://en.wikipedia.org/wiki/Parsing#Implementation
+
+https://docs.oracle.com/cd/E19316-01/819-3669/bnbdy/index.html
+
+** RDF/Turtle Reference
+
+https://www.w3.org/TR/2013/CR-turtle-20130219/
+*** Updated version from W3C
+
+https://www.w3.org/TR/turtle/
