@@ -20,14 +20,40 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 //
+#ifndef RDFTURTLE_PARSERC_H_
+#define RDFTURTLE_PARSERC_H_
+
+#include <assert.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
-#include "../src/lib/rdfturtle.h"
+#ifndef CUSTOM_ALLOC
+#define CUSTOM_ALLOC
+#define CSV_ALLOC _arena_context_alloc_noshare
+#endif // CUSTOM_ALLOC
 
-int
-main(void) {
+#ifndef CUSTOM_MALLOC_C
+#define CUSTOM_MALLOC_C malloc
+#endif // CUSTOM_MALLOC_C
 
-    // printf("hello world!\n ");
-    printf("TEST:: %d\n", MAX_NAME_CELL);
-    return 0;
-}
+#ifndef CUSTOM_FREE_MALLOC_C
+#define CUSTOM_FREE_MALLOC_C free
+#endif // CUSTOM_FREE_MALLOC_C
+
+#ifndef JUST_MALLOC
+#define JUST_MALLOC false
+#endif // JUST_MALLOC
+
+#ifndef MAX_NAMES
+#define MAX_NAME_CELL 120
+#endif // MAX_NAMES
+
+#ifndef SEPARATION_CARACTER
+#define SEPARATION_CARACTER '.'
+#define CONTINUATION_CARACTER ';'
+#define SPACE_CARACTER " "
+#endif
+
+#endif // RDFTURTLE_PARSERC_H_

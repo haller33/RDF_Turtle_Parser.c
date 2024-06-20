@@ -4,13 +4,15 @@
 
 this parser as intented to be a header only parser on C only
 
+following the DoD design principles
+
 trying to following the [[https://www.perforce.com/blog/kw/NASA-rules-for-developing-safety-critical-code][10 Power rule]] from NASA to avoid memory leaks
 
 * References
 
 ** RDF Refence file
 
-- The list of ontologies from [[https://obofoundry.org][OBO Foundury]]
+The list of ontologies from [[https://obofoundry.org][OBO Foundury]]
 
 ** Pull Parsers
 
@@ -22,5 +24,7 @@ https://docs.oracle.com/cd/E19316-01/819-3669/bnbdy/index.html
 
 https://www.w3.org/TR/2013/CR-turtle-20130219/
 *** Updated version from W3C
+
+- RDF 1.1
 
 https://www.w3.org/TR/turtle/
