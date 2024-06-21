@@ -31,7 +31,8 @@
 
 #ifndef CUSTOM_ALLOC
 #define CUSTOM_ALLOC
-#define CSV_ALLOC _arena_context_alloc_noshare
+ // TODO: not need if follow power ten rule
+// #define CSV_ALLOC _arena_context_alloc_noshare
 #endif // CUSTOM_ALLOC
 
 #ifndef CUSTOM_MALLOC_C
@@ -46,14 +47,44 @@
 #define JUST_MALLOC false
 #endif // JUST_MALLOC
 
-#ifndef MAX_NAMES
-#define MAX_NAME_CELL 120
-#endif // MAX_NAMES
-
 #ifndef SEPARATION_CARACTER
 #define SEPARATION_CARACTER '.'
 #define CONTINUATION_CARACTER ';'
 #define SPACE_CARACTER " "
-#endif
+#endif // SEPARATION_CARACTER
+
+#ifndef MAX_NAMES
+#define MAX_NAMES
+#define MAX_NAMESPACES 1500
+#define MAX_NAME_CELL 2048
+#define MAX_CHAR_BY_LINE 4500
+#endif // MAX_NAMES
+
+#ifndef SYMBOLS
+#define SYMBOLS
+#define BASE_URI_SYMBOL "@base"
+#define PREFIX_SYMBOL "@prefix"
+#endif // SYMBOLS
+
+// try to align the stack, since DoD and TenPowerRule
+//
+typedef struct _rdf_turtle_adt {
+
+    char subject[MAX_NAME_CELL];
+    char predicate[MAX_NAME_CELL];
+    char object[MAX_NAME_CELL];
+
+    char _rdf_file_path[MAX_CHAR_BY_LINE];
+    char _rdf_base_uri[MAX_CHAR_BY_LINE];
+    char _namespaces[MAX_NAMESPACES][MAX_CHAR_BY_LINE]; // TODO
+    char _current_line[MAX_CHAR_BY_LINE];
+
+    size_t _triple_count;
+    size_t _column;
+    size_t _line_count_iterator;
+
+    FILE *_pdp;
+
+} rdf_turtle_adt;
 
 #endif // RDFTURTLE_PARSERC_H_
