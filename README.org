@@ -4,7 +4,7 @@
 
 this parser as intented to be a header only parser on C only
 
-following the DoD design principles
+following the [[https://www.amazon.com.br/Data-oriented-design-engineering-resources-schedules/dp/1916478700][DoD design principles]]
 
 trying to following the [[https://www.perforce.com/blog/kw/NASA-rules-for-developing-safety-critical-code][10 Power rule]] from NASA to avoid memory leaks
 
@@ -20,10 +20,16 @@ https://en.wikipedia.org/wiki/Parsing#Implementation
 
 https://docs.oracle.com/cd/E19316-01/819-3669/bnbdy/index.html
 
+** HTTP 1.1 Standard Updated Jun 2022
+
+https://www.rfc-editor.org/rfc/rfc9110#section-4.1-5
+
 ** RDF/Turtle Reference
 
 https://www.w3.org/TR/2013/CR-turtle-20130219/
 *** Updated version from W3C
+
+RDF and Turtle uses URIs for they elements
 
 - RDF 1.1
 
