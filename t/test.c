@@ -28,6 +28,7 @@ int
 main(void) {
 
     rdf_turtle_adt test;
+    (void) test;
     // memset(&test, 1, sizeof(rdf_turtle_adt));
     // printf("hello world!\n ");
     printf("TEST:: %d\n", RDFTURTLE_MAX_NAME_CELL);

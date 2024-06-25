@@ -1,0 +1,25 @@
+* some thoughts
+
+** about the design decisions
+
+there is a concept that this parser most handle only the syntax specifications of the RDF/Turtle file format, so, there is no up front and under pre-concept about what should happens on the file it self, if the file re-specify its SUBJECTs, or it uses a lot of prefix and indirections, namespaces, this will not be handle by this parser, this is intended to be a memory safe, no allocation (mostly), pull parser, string only, array only, for the .ttl file format
+
+so because of that, the parser most return only text, with the respected only SUBJECT indication on the given next 'token'(with all they details on the current local context, not globaly), the token most be handle by some internal state on the program (as a way to simplify interfacing), but this should work in a way that it can be even compiled to WASM and run with out problems ( and do not having a need of custom allocators, for that matter ), with bring back the question about how the interface with the user should work
+
+with the thougths on the interface, the parser most use some simple, and still usable functions in a way that the user or any* application, can hack the parser, and use as wharever they want(change they behavior to a push parser for instance), in this matter of fact, this most use 'general' data structures(fundamental data structures), that are simple to use, 'memory safe' and easy to handle, this bring the fundamental data struct that even the 10 power rule from NASA talk about, with is Arrays, linear memory, pre allocated memory on STACK (because of thread safety concerns, or simple fork this project, put a 'static' key word on the name of the variable and then boom, you have a static HEAP allocated array.)
+
+so yeah, for some circumstances, this datastructure is even better for performance concerns, but still we are on the current behavior of linux virtual mapping of memory (2024), on with they can be some memory page fallout, since the extended use of memory and the normal under 64k on Cache L1, with that in mind, and since complexity to use a dynamic scope to deal with the size of the memory usage and better specific performance penalty (a local penalty), is better to not think about that question, and stay using just Arrays, because even on the WASM side, the creation of this array should be stread forwards on the JS side, to deal with this memory serialization, stead of some under going wicher data structure
+
+*** under local changes
+
+**** the number of namespaces
+
+since, there is most a lot of possible namespaces and we a pretending to be universal parsing, this can cause a lot of problems and wierd ideas of how to deal with parsing and handling the namespaces/prefix on each RDF file format, since standalization, with that in mind, we a NOT do handle that, and simple pass any prefix that happens to exist, as stantly information, but without kepping this information under the parser or its internal data struct
+
+**** add tests for WASM
+
+since this parser aims to be a universal turtle parser, and since WASM is undergoing growth, this parser most run on WASM, so create case of examples on t/ with has the parser using as WASM application or WASM function, for hopefuly, run on any WASM VM
+
+** GOALS
+
+be a universal data format parser(for .ttl), be simple, be eficient (as long as possible), be portable, extendable, hackable, easy to use, easy to change, easy to embedded, simple library, memory safe as long as C semantics stand, pull parser, string only, no context handle, no new specifications awareness, compatible with Windows, most run on WASM

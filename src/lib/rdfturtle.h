@@ -83,7 +83,7 @@ typedef struct _rdf_turtle_adt {
 
     char _rdf_file_path[RDFTURTLE_MAX_NAME_CELL];
     char _rdf_base_uri[RDFTURTLE_MAX_NAME_CELL];
-    char _namespaces[RDFTURTLE_MAX_NAMESPACES][RDFTURTLE_MAX_NAME_CELL]; // TODO
+    char _namespaces[RDFTURTLE_MAX_NAMESPACES][RDFTURTLE_MAX_NAME_CELL]; // TODO: remove it.
     char _current_line[RDFTURTLE_MAX_CHAR_BY_LINE];
 
     size_t _triple_count;
