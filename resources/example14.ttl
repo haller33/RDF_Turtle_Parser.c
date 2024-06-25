@@ -1,0 +1,65 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix ex: <http://example.org/stuff/1.0/> .
+
+<http://www.w3.org/TR/rdf-syntax-grammar>
+  dc:title "RDF/XML Syntax Specification (Revised)" ;
+  ex:editor [
+    ex:fullname "Dave Beckett";
+    ex:homePage <http://purl.org/net/dajobe/>
+  ] .
+
+
+# two literals
+PREFIX : <http://example.org/stuff/1.0/>
+:a :b ( "apple" "banana" ) .
+
+
+# sort from example 2
+@prefix : <http://example.org/stuff/1.0/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+:a :b
+  [ rdf:first "apple";
+    rdf:rest [ rdf:first "banana";
+               rdf:rest rdf:nil ]
+  ] .
+
+
+# literal objects containing listeral objects
+@prefix : <http://example.org/stuff/1.0/> .
+
+:a :b "The first line\nThe second line\n  more" .
+
+:a :b """The first line
+The second line
+  more""" .
+
+# example of collection
+@prefix : <http://example.org/stuff/1.0/> .
+(1 2.0 3E1) :p "w" .
+
+# example of blank nodes
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    _:b0  rdf:first  1 ;
+          rdf:rest   _:b1 .
+    _:b1  rdf:first  2.0 ;
+          rdf:rest   _:b2 .
+    _:b2  rdf:first  3E1 ;
+          rdf:rest   rdf:nil .
+    _:b0  :p         "w" .
+
+# this is a example of a list of elements
+PREFIX : <http://example.org/stuff/1.0/>
+(1 [:p :q] ( 2 ) ) :p2 :q2 .
+
+# this is its literal form. (the syntax sugar for is up)
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    _:b0  rdf:first  1 ;
+          rdf:rest   _:b1 .
+    _:b1  rdf:first  _:b2 .
+    _:b2  :p         :q .
+    _:b1  rdf:rest   _:b3 .
+    _:b3  rdf:first  _:b4 .
+    _:b4  rdf:first  2 ;
+          rdf:rest   rdf:nil .
+    _:b3  rdf:rest   rdf:nil .
