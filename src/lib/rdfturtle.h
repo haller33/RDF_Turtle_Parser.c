@@ -47,9 +47,14 @@
 #define RDFTURTLE_JUST_MALLOC false
 #endif // RDFTURTLE_JUST_MALLOC
 
+#ifndef RDFTURTLE_COMMENT_CARACTER
+#define RDFTURTLE_COMMENT_CARACTER '#'
+#endif
+
 #ifndef RDFTURTLE_SEPARATION_CARACTER
-#define RDFTURTLE_SEPARATION_CARACTER '.'
-#define RDFTURTLE_CONTINUATION_CARACTER ';'
+#define RDFTURTLE_TRIPLE_SEPARATION_CARACTER '.'
+#define RDFTURTLE_CONTINUATION_PREDICATE_LIST_CARACTER ','
+#define RDFTURTLE_CONTINUATION_OBJECT_LIST_CARACTER ';'
 #define RDFTURTLE_SPACE_CARACTER " "
 #endif // RDFTURTLE_SEPARATION_CARACTER
 
@@ -62,15 +67,19 @@
 /// they can be up to 8000 caracters
 /// each cell can be a URI, so
 /// source :: https://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url-in-different-browsers#answer-417184
-#define RDFTURTLE_MAX_NAMESPACES 1500 // arbitrary one...
 #define RDFTURTLE_MAX_NAME_CELL 8192 // 2 ^ 13
 #define RDFTURTLE_MAX_CHAR_BY_LINE 25088 // ((8192 × 3) + 512)
+/// since there is no more wish to handle and keep data of the namespaces on the internal adt of the parser
+/// #define RDFTURTLE_MAX_NAMESPACES 1500 // arbitrary one...
 #endif // RDFTURTLE_MAX_NAMES
 
 #ifndef RDFTURTLE_SYMBOLS
 #define RDFTURTLE_SYMBOLS
-#define RDFTURTLE_BASE_URI_SYMBOL "@base"
-#define RDFTURTLE_PREFIX_SYMBOL "@prefix"
+#define RDFTURTLE_BEGIN_SYMBOL "@"
+#define RDFTURTLE_BASE_URI_SYMBOL_RDF11 "@base"
+#define RDFTURTLE_PREFIX_SYMBOL_RDF11 "@prefix"
+#define RDFTURTLE_BASE_URI_SYMBOL_SPARQL "BASE"
+#define RDFTURTLE_PREFIX_SYMBOL_SPARQL "PREFIX"
 #endif // RDFTURTLE_SYMBOLS
 
 // try to align the stack, since DoD and TenPowerRule
@@ -83,7 +92,7 @@ typedef struct _rdf_turtle_adt {
 
     char _rdf_file_path[RDFTURTLE_MAX_NAME_CELL];
     char _rdf_base_uri[RDFTURTLE_MAX_NAME_CELL];
-    char _namespaces[RDFTURTLE_MAX_NAMESPACES][RDFTURTLE_MAX_NAME_CELL]; // TODO: remove it.
+    char _current_namespace[RDFTURTLE_MAX_NAME_CELL];
     char _current_line[RDFTURTLE_MAX_CHAR_BY_LINE];
 
     size_t _triple_count;

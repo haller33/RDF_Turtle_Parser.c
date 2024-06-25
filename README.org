@@ -27,6 +27,19 @@ https://www.rfc-editor.org/rfc/rfc9110#section-4.1-5
 ** RDF/Turtle Reference
 
 https://www.w3.org/TR/2013/CR-turtle-20130219/
+
+syntax for IRIs
+
+https://www.w3.org/TR/sparql11-query/#QSynIRI
+
+turtle reference
+
+https://www.w3.org/TR/turtle/#grammar-production-turtleDoc
+
+trutle grammer
+
+https://www.w3.org/TR/turtle/#sec-grammar
+
 *** Updated version from W3C
 
 RDF and Turtle uses URIs for they elements

@@ -14,11 +14,20 @@ so yeah, for some circumstances, this datastructure is even better for performan
 
 **** the number of namespaces
 
-since, there is most a lot of possible namespaces and we a pretending to be universal parsing, this can cause a lot of problems and wierd ideas of how to deal with parsing and handling the namespaces/prefix on each RDF file format, since standalization, with that in mind, we a NOT do handle that, and simple pass any prefix that happens to exist, as stantly information, but without kepping this information under the parser or its internal data struct
+since, there is most a lot of possible namespaces and we a pretending to be universal parsing, this can cause a lot of problems and wierd ideas of how to deal with parsing and handling the namespaces/prefix on each RDF file format, since standalization, with that in mind, we a NOT do handle that, and simple pass any prefix that happens to exist(with the struct for doing return as copy only on a pre-allocated memory), as stantly information, but without kepping this information under the parser or its internal data struct for later
 
 **** add tests for WASM
 
-since this parser aims to be a universal turtle parser, and since WASM is undergoing growth, this parser most run on WASM, so create case of examples on t/ with has the parser using as WASM application or WASM function, for hopefuly, run on any WASM VM
+since this parser aims to be a universal turtle parser, and since WASM is undergoing growth, this parser most run on WASM, so create case of examples on t/ with has the parser using as WASM application or WASM function, for hopefuly, run on any WASM VM or aka Browser
+
+** TODOS
+
+check aboutrdf.md document. [[https://github.com/JoshData/rdfabout][aboutrdf]]
+
+read all the RDF 1.1 specification. (implement if one liner)
+
+read mostly of the HTTP 1.1 specification.
+
 
 ** GOALS
 
